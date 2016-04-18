@@ -1,0 +1,31 @@
+setup beacons
+
+https://github.com/saltstack/salt/blob/develop/salt/beacons/memusage.py
+
+
+# Check status of salt minions
+salt-run manage.status
+salt '*' cmd.run 'hostname'
+
+# Get network config
+salt '*' cmd.run 'ifconfig' # if docker0 nic isnt present you have issues with k8s
+
+# measure all temperatures
+salt '*' cmd.run '/opt/vc/bin/vcgencmd measure_temp'
+
+# how to fix a specific node that isn't in kubernetes:
+badnode=pi-b827eb72d53a
+salt $badnode cmd.run 'kube-config enable-worker 192.168.1.144' -t 400
+# if that fails
+salt $badnode cmd.run 'reboot -h now'
+# wait a little bit
+salt $badnode cmd.run 'kube-config enable-worker 192.168.1.144' -t 400
+# check kubectl get nodes
+
+
+ps -ef | grep docker
+
+# Flash the LEDs in heartbeat
+salt '*' cmd.run 'modprobe ledtrig_heartbeat && echo heartbeat >/sys/class/leds/led0/trigger'
+# Go back to normal
+salt '*' cmd.run 'echo mmc0 >/sys/class/leds/led0/trigger'

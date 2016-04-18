@@ -2,12 +2,9 @@
 # Since Arch Linux gets frequent updates, it’s useful to upgrade it immediately after booting it up for the first time. The docker and salt packages can also be installed and enabled on the same go. Here are the commands:
 
 pacman --noconfirm -Syu
-pacman --noconfirm -S docker salt
-systemctl enable docker.service salt-minion.service
+pacman --noconfirm -S salt git
+systemctl enable salt-minion.service
 timedatectl set-timezone America/Los_Angeles
-
-# Docker needs a little configuration to make it listen to both the UNIX socket and the TCP port, so it can be controlled locally and from outside. This command will do the trick:
-sed -e 's@/usr/bin/docker -d@/usr/bin/docker -d -H unix:///var/run/docker.sock -H tcp://0.0.0.0:2375@' -i /usr/lib/systemd/system/docker.service
 
 # Arch Linux sets the default hostname to “alarmpi”, which causes every Raspberry Pi device to have the same hostname. This would confuse SaltStack, so we need to add a small custom systemd service to reset the hostname to the Ethernet adapter’s MAC address at boot. This can be done with the following commands:
 

@@ -1,0 +1,16 @@
+kubectl get nodes
+
+kubectl get pods --all-namespaces -o wide
+kubectl get rc --all-namespaces
+kubectl get svc --all-namespaces
+
+
+
+kubectl get deployment --all-namespaces
+
+kubectl scale deployment my-nginx --replicas=5
+
+
+# Other resources
+kubectl get image
+kubectl get rs --all-namespaces

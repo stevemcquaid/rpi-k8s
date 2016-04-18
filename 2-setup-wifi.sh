@@ -28,8 +28,8 @@ systemctl start systemd-resolved
 systemctl enable systemd-networkd
 
 # Start the services
-systemctl start wpa_supplicant@wlan0.service
-systemctl restart systemd-networkd.service
+systemctl start wpa_supplicant@wlan0
+systemctl restart systemd-networkd
 
 
 # Clean up and restart

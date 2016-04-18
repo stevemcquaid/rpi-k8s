@@ -1,0 +1,17 @@
+# Get temperature
+/opt/vc/bin/vcgencmd measure_temp
+
+
+# LED Control
+
+echo 1 >/sys/class/leds/led0/brightness
+echo 0 >/sys/class/leds/led0/brightness
+# Setting the brightness to 0 automatically sets the trigger to "none"
+
+# Go back to default function:
+echo mmc0 >/sys/class/leds/led0/trigger
+
+# As an aside, there are a couple of kernel modules you can load up (ledtrig_timer and ledtrig_heartbeat) which will flash the LED for you.
+
+modprobe ledtrig_heartbeat && echo heartbeat >/sys/class/leds/led0/trigger
+
