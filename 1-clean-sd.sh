@@ -5,6 +5,7 @@ umount "$(echo $hdd)2"
 
 mkdir -p /root/rpi
 cd /root/rpi
+
 echo "o
 p
 n
@@ -21,9 +22,11 @@ p
 
 w" | fdisk $hdd
 mkfs.vfat "$(echo $hdd)1"
+mkdir -p /root/rpi/boot
 mount "$(echo $hdd)1" /root/rpi/boot
 
 mkfs.ext4 "$(echo $hdd)2"
+mkdir -p /root/rpi/root
 mount "$(echo $hdd)2" /root/rpi/root
 
 if [! -f ArchLinuxARM-rpi-2-latest.tar.gz]; then
