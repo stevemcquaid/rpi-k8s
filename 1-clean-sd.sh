@@ -1,4 +1,7 @@
 #!/bin/sh
+umount /dev/sdb1
+umount /dev/sdb2
+
 hdd="/dev/sdb"
 echo "o
 p
