@@ -1,0 +1,8 @@
+[Unit]
+Description=Set hostname to MAC address
+Before=salt-minion.service
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/sethostname.sh
+[Install]
+WantedBy=multi-user.target

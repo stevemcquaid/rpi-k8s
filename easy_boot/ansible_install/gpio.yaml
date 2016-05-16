@@ -1,0 +1,12 @@
+#!/usr/bin/env ansible-playbook
+---
+
+- hosts: gpio
+  vars:
+    ansible_python_interpreter: /usr/bin/python2
+  remote_user: root
+  tasks:
+      - include: includes/gpio/gpio-install.yaml
+      - include: includes/gpio/gpio1.yaml
+      - include: includes/gpio/gpio2.yaml
+      - include: includes/gpio/gpio3.yaml

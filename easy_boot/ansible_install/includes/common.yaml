@@ -1,0 +1,20 @@
+---
+- name: Update
+  command: pacman --noconfirm -Syu
+  sudo: yes
+
+- name: Install some util packages
+  command: pacman --noconfirm -S git nmap nano vim gcc python2-pip
+  sudo: yes
+
+- name: Install salt
+  command: echo "1" | pacman --noconfirm -S salt
+  sudo: yes
+
+# - name: Install byobu
+#   command: pacman --noconfirm -S byobu
+#   sudo: yes
+
+- name: Update
+  command: timedatectl set-timezone America/Los_Angeles
+  sudo: yes

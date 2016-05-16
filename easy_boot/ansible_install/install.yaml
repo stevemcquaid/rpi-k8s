@@ -1,0 +1,20 @@
+#!/usr/bin/env ansible-playbook
+---
+
+- hosts: install
+  vars:
+    ansible_python_interpreter: /usr/bin/python2
+    wifi_ssid: "{{ lookup('ini', 'wifi_ssid section=WIFI file=rpi.env') }}"
+    wifi_ps: "{{ lookup('ini', 'wifi_ps section=WIFI file=rpi.env') }}"
+  remote_user: root
+  tasks:
+      - include: includes/fix-hostname.yaml
+      - include: includes/common.yaml
+      - include: includes/setup-wifi.yaml
+
+      - name: Reboot....
+        command: reboot -h now
+        sudo: yes
+        ignore_errors: yes
+
+      # - include: includes/secure-users.yaml

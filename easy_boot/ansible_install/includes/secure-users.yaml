@@ -1,0 +1,11 @@
+---
+
+- name: modify sudoers file to spec + add second include file
+- name: delete alarm user
+- name: create user deploy
+- name: add to group - sudo
+- name: add user to sudoers include file
+- name: Setup ssh keys for deploy user
+- name: remove permit root login
+- name: delete alarm user
+- name: change all files to correct perms

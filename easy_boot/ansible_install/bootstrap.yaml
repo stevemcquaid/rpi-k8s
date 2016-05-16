@@ -1,0 +1,16 @@
+#!/usr/bin/env ansible-playbook
+---
+
+- hosts: install
+  remote_user: alarm
+  gather_facts: no
+  tasks:
+    - name: Set root ps
+      raw: echo "root" | su root -c "echo root:root | /usr/sbin/chpasswd"
+    - name: Install python & sudo
+      raw: echo "root" | su root -c "pacman --noconfirm -S python2 sudo"
+    - name: PermitRootLogin
+      raw: echo "root" | su root -c "echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config"
+    - name: Clear SSH host keys so they will be generated at boot time
+      raw: echo "root" | su root -c "rm -f /etc/ssh/ssh_host* && reboot -h now"
+      ignore_errors: yes

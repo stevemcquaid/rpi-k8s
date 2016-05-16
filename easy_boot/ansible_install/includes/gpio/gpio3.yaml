@@ -1,0 +1,4 @@
+---
+- name: create GPIO file
+  template: src=templates/gpio/gpio-3-pir.py.j2 dest=/root/gpio/gpio-3-pir.py owner={{ ansible_user_id }} group=root mode=0755
+  sudo: yes

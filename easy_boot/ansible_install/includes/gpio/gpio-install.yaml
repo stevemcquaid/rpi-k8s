@@ -1,0 +1,17 @@
+---
+
+- name: install rpi-gpio
+  command: pip2 install https://pypi.python.org/packages/c1/a8/de92cf6d04376f541ce250de420f4fe7cbb2b32a7128929a600bc89aede5/RPi.GPIO-0.6.2.tar.gz
+  sudo: yes
+
+- name: install ex_setup
+  command: pip2 install ez_setup
+  sudo: yes
+
+- name: install Adafruit-CharLCD
+  command: pip2 install https://pypi.python.org/packages/91/d9/b7522c5a3ad0e4a0b1db5954f5f8d5b7da2dce304bee85f2cee4f3b0b055/Adafruit_CharLCD-1.1.0.tar.gz
+  sudo: yes
+
+- name: mkdir gpio
+  command: mkdir -p /root/gpio
+  sudo: yes

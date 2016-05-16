@@ -1,0 +1,23 @@
+---
+
+# Arch Linux sets the default hostname to “alarmpi”, which causes every Raspberry Pi device to have the same hostname. This would confuse SaltStack, so we need to add a small custom systemd service to reset the hostname to the Ethernet adapter’s MAC address at boot. This can be done with the following commands:
+
+# - name: Fix hostname
+#   command: echo "pi-$(tr -d ':' < /sys/class/net/eth0/address)" | xargs hostnamectl set-hostname
+#   sudo: yes
+
+- name: create script to fix hostname
+  template: src=templates/sethostname.sh.j2 dest=/usr/local/bin/sethostname.sh owner={{ ansible_user_id }} group=root mode=0755
+  sudo: yes
+
+- name: create service file to fix hostname
+  template: src=templates/sethostname.service.j2 dest=/etc/systemd/system/sethostname.service owner={{ ansible_user_id }} group=root mode=0755
+  sudo: yes
+
+- name: Enable service for fixing hostname
+  command: systemctl enable sethostname.service
+  sudo: yes
+
+- name: Start service for fixing hostname
+  command: systemctl start sethostname.service
+  sudo: yes

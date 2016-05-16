@@ -1,0 +1,2 @@
+#!/bin/sh
+echo "pi-$(tr -d ':' < /sys/class/net/eth0/address)" | xargs hostnamectl set-hostname

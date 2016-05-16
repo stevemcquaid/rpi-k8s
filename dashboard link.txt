@@ -1,0 +1,3 @@
+https://github.com/kubernetes/dashboard/tree/master/docs/design/mockups/11-11-2015-initial
+
+ebay - http://www.slideshare.net/sriramhere/kubernetes-on-openstack-ebay
